@@ -1,8 +1,8 @@
 plugins {
-	id("org.springframework.boot") version "3.3.2"
+	alias(libs.plugins.spring.boot)
 	id("io.spring.dependency-management") version "1.1.6"
-	kotlin("jvm") version "1.9.24"
-	kotlin("plugin.spring") version "1.9.24"
+	kotlin("jvm") version libs.versions.kotlinVersion
+	kotlin("plugin.spring") version libs.versions.kotlinVersion
 }
 
 group = "quest.marketstack"
@@ -25,6 +25,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("io.mockk:mockk:1.13.5")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 }
 
 kotlin {
