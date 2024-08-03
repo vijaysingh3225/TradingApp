@@ -9,4 +9,6 @@ import java.time.LocalTime
 @Service
 class TradeService(private val dataSource: TradeDataSource) {
     fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
+
+
 }
