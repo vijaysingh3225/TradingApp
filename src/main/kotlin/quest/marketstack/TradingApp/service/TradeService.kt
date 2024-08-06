@@ -10,5 +10,8 @@ import java.time.LocalTime
 class TradeService(private val dataSource: TradeDataSource) {
     fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
 
+    fun getTradeExec(id: Int): TradeExec? = dataSource.retrieveTradeExec(id)
+
+    fun addTradeExec(exec: TradeExec): TradeExec = dataSource.createTradeExec(exec)
 
 }
