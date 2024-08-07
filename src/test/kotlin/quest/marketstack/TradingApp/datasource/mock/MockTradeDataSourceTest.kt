@@ -1,6 +1,5 @@
 package quest.marketstack.TradingApp.datasource.mock
 
-
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

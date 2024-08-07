@@ -1,17 +1,18 @@
 package quest.marketstack.TradingApp.service
 
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import quest.marketstack.TradingApp.datasource.TradeDataSource
 import quest.marketstack.TradingApp.model.TradeExec
-import java.time.LocalDate
-import java.time.LocalTime
+
 
 @Service
-class TradeService(private val dataSource: TradeDataSource) {
-    fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
+@Profile("test")
+class TradeService(private val dataSource: TradeDataSource):TradeServiceInterface {
+    override fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
 
-    fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
+    override fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
 
-    fun addTradeExec(exec: TradeExec): TradeExec = dataSource.createTradeExec(exec)
+    override fun addTradeExec(exec: TradeExec): TradeExec = dataSource.createTradeExec(exec)
 
 }

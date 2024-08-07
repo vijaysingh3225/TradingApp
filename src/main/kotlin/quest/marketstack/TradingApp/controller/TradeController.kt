@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
-import quest.marketstack.TradingApp.model.Trade
 import quest.marketstack.TradingApp.model.TradeExec
-import quest.marketstack.TradingApp.service.MongoTradeService
+
+import quest.marketstack.TradingApp.service.TradeServiceInterface
 
 @RestController
 @RequestMapping("/api/tradeExecs")
-class TradeController(private val service: MongoTradeService) {
+class TradeController(private val service: TradeServiceInterface) {
     @GetMapping
     fun getTradeExecs(): Collection<TradeExec> = service.getTradeExecs();
 

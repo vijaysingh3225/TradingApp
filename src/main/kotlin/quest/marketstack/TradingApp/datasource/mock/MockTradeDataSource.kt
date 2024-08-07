@@ -10,6 +10,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @Component
+@Profile("test")
 class MockTradeDataSource:TradeDataSource {
 
     val mockExec = mutableListOf(TradeExec(

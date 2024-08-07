@@ -7,6 +7,7 @@ import quest.marketstack.TradingApp.datasource.TradeDataSource
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Primary
+@Profile("!test")
 @Component
 class MongoTradeDataSource @Autowired constructor(
     private val tradeExecRepository: TradeExecRepository
