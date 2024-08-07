@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import quest.marketstack.TradingApp.model.Trade
 import quest.marketstack.TradingApp.model.TradeExec
-import quest.marketstack.TradingApp.service.TradeService
+import quest.marketstack.TradingApp.service.MongoTradeService
 
 @RestController
 @RequestMapping("/api/tradeExecs")
-class TradeController(private val service: TradeService) {
+class TradeController(private val service: MongoTradeService) {
     @GetMapping
     fun getTradeExecs(): Collection<TradeExec> = service.getTradeExecs();
 
     @GetMapping("/{id}")
-    fun getTradeExec(@PathVariable id: Int) = service.getTradeExec(id)
+    fun getTradeExec(@PathVariable id: String) = service.getTradeExec(id)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

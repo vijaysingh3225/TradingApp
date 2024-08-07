@@ -4,9 +4,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 import java.time.LocalTime
 
+@Document(collection = "TradeExecutions")
 data class TradeExec(
-
-        val id: Int,
+        @Id
+        val id: String?,
         val account: String,
         val tradeDate: LocalDate,
         val settlementDate: LocalDate,

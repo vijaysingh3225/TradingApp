@@ -9,17 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
-import kotlin.test.assertContentEquals
-import kotlin.test.assertNull
+
 
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 class TradeControllerTest @Autowired constructor(
     val mockMvc: MockMvc,
@@ -61,7 +63,7 @@ class TradeControllerTest @Autowired constructor(
 
         @Test
         fun `should return the trade with the given id`() {
-            val id = 234;
+            val id = "234";
 
             mockMvc.get("$baseUrl/$id")
                 .andDo { print() }
@@ -79,7 +81,7 @@ class TradeControllerTest @Autowired constructor(
         @Test
         fun `should add a new trade execution`() {
             val newExec = TradeExec(
-                id = 4567,account = "8923", tradeDate = LocalDate.of(2022, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
+                id = "4567",account = "8923", tradeDate = LocalDate.of(2022, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
                 side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
                 secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
                 liquidity = "High", note = "Executed trade with adjusted settings")
@@ -96,15 +98,7 @@ class TradeControllerTest @Autowired constructor(
 
         }
 
-        @Test
-        fun `should return BAD REQUEST`() {
-            val repeatExec = TradeExec(
-                id = 4567,account = "8923", tradeDate = LocalDate.of(2022, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
-                side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
-                secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
-                liquidity = "High", note = "Executed trade with adjusted settings")
 
-
-        }
     }
+
 }

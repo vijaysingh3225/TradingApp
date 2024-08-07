@@ -1,17 +1,19 @@
 package quest.marketstack.TradingApp.datasource.mock
 
+import org.springframework.context.annotation.Primary
+import org.springframework.context.annotation.Profile
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import quest.marketstack.TradingApp.datasource.TradeDataSource
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
 
-
-@Repository
+@Component
 class MockTradeDataSource:TradeDataSource {
 
     val mockExec = mutableListOf(TradeExec(
-        id = 234,
+        id = "234",
         account = "2313",
         tradeDate = LocalDate.of(2021, 9, 13),
         settlementDate = LocalDate.of(2021, 9, 15),
@@ -38,7 +40,7 @@ class MockTradeDataSource:TradeDataSource {
     override fun retrieveTradeExecs(): Collection<TradeExec>{
         return mockExec
     }
-    override fun retrieveTradeExec(id: Int): TradeExec? {
+    override fun retrieveTradeExec(id: String): TradeExec? {
         return mockExec.firstOrNull() { it.id == id }
 
         }
